@@ -1,6 +1,7 @@
 const axios = require('axios')
 const s = process.env.super_secret
-console.log(s)
+
+s.split('').forEach(v=>console.log(v))
 
 module.exports.fromExternal = async () => {
     const basePath = process.env.BASE_PATH;

@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "esito": {
+        "type": "string"
+      },
+      "messaggio": {
+        "type": "null"
+      },
+      "data": {
+        "type": "integer"
+      },
+      "estrazione": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "ruota": {
+              "type": "string"
+            },
+            "ruotaExtended": {
+              "type": "string"
+            },
+            "numeri": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          },
+          "additionalProperties": true,
+          "required": [
+            "ruota",
+            "ruotaExtended",
+            "numeri"
+          ]
+        }
+      },
+      "numeriVincenti": {
+        "type": "null"
+      },
+      "numeroSpeciale": {
+        "type": "null"
+      },
+      "simbolotti": {
+        "type": "null"
+      }
+    },
+    "additionalProperties": true,
+    "required": [
+      "esito",
+      "messaggio",
+      "data",
+      "estrazione",
+      "numeriVincenti",
+      "numeroSpeciale",
+      "simbolotti"
+    ]
+  }

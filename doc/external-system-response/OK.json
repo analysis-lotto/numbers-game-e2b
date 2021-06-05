@@ -1,0 +1,120 @@
+{
+    "esito": "OK",
+    "messaggio": null,
+    "data": 169200000,
+    "estrazione": [
+        {
+            "ruota": "BA",
+            "ruotaExtended": "BARI",
+            "numeri": [
+                34,
+                28,
+                77,
+                38,
+                49
+            ]
+        },
+        {
+            "ruota": "CA",
+            "ruotaExtended": "CAGLIARI",
+            "numeri": [
+                30,
+                84,
+                21,
+                90,
+                31
+            ]
+        },
+        {
+            "ruota": "FI",
+            "ruotaExtended": "FIRENZE",
+            "numeri": [
+                15,
+                63,
+                9,
+                55,
+                21
+            ]
+        },
+        {
+            "ruota": "GE",
+            "ruotaExtended": "GENOVA",
+            "numeri": [
+                90,
+                26,
+                71,
+                20,
+                42
+            ]
+        },
+        {
+            "ruota": "MI",
+            "ruotaExtended": "MILANO",
+            "numeri": [
+                6,
+                66,
+                80,
+                41,
+                34
+            ]
+        },
+        {
+            "ruota": "NA",
+            "ruotaExtended": "NAPOLI",
+            "numeri": [
+                79,
+                33,
+                82,
+                48,
+                50
+            ]
+        },
+        {
+            "ruota": "PA",
+            "ruotaExtended": "PALERMO",
+            "numeri": [
+                49,
+                82,
+                43,
+                79,
+                53
+            ]
+        },
+        {
+            "ruota": "RM",
+            "ruotaExtended": "ROMA",
+            "numeri": [
+                28,
+                30,
+                85,
+                63,
+                57
+            ]
+        },
+        {
+            "ruota": "TO",
+            "ruotaExtended": "TORINO",
+            "numeri": [
+                71,
+                18,
+                30,
+                68,
+                32
+            ]
+        },
+        {
+            "ruota": "VE",
+            "ruotaExtended": "VENEZIA",
+            "numeri": [
+                20,
+                63,
+                16,
+                11,
+                10
+            ]
+        }
+    ],
+    "numeriVincenti": null,
+    "numeroSpeciale": null,
+    "simbolotti": null
+}

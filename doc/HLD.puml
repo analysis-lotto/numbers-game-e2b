@@ -1,0 +1,44 @@
+@startuml
+
+participant "External Source" as ext
+
+participant "GitHub Action" as gh
+
+participant "E2R" as e2r
+
+database raw
+
+== Start execution ==
+
+gh -> gh: Schedule trigger
+
+gh -> e2r: Check if already started
+e2r --> gh: Not started
+
+gh -> e2r: Start job
+
+e2r -> raw: get watermark
+raw --> e2r
+
+alt watermark is in the past
+
+e2r -> ext: retrieve data
+ext --> e2r
+
+e2r -> raw: save data
+raw --> e2r
+
+end
+
+e2r --> gh: end job
+
+== Already Started ==
+
+gh -> gh: Schedule trigger
+gh -> e2r: Check if already started
+e2r --> gh:  Return that already Started
+gh -> gh: stop github Action
+
+
+
+@enduml

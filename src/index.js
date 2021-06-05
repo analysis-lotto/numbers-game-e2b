@@ -33,7 +33,7 @@ app.get('/start', (req, res) => {
         })
 
     } else {
-        execute()
+        execute(runId)
         res.status(204)
         .json({
             runId

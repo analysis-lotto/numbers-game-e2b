@@ -15,7 +15,7 @@ module.exports.execute = async (_jobId) => {
 
         await getWatermark( async (result) => {
 
-            let pointer = result[0] ? result[0].watermarkValue + (24 * 60 * 60 * 1000) : FIRST_DAY
+            let pointer = result[0] ? result[0].watermarkValue : FIRST_DAY
 
 
             while (watermarkInThePastDay(pointer) && operationNumber < MAX_OPERATION) {
@@ -77,7 +77,7 @@ function watermarkInThePastDay(target) {
 
     const now = startOfTheDay()
 
-    return watermarkInDate < now;
+    return watermarkInDate <= now;
 
 }
 

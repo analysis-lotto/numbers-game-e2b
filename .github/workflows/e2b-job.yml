@@ -40,3 +40,5 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: node cli
+        env: # Or as an environment variable
+          super_secret: ${{ secrets.BASE_PATH }}

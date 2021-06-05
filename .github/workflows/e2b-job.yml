@@ -41,4 +41,5 @@ jobs:
       - run: npm install
       - run: node cli
         env: # Or as an environment variable
-          super_secret: ${{ secrets.BASE_PATH }}
+          ENV_BASE_PATH: ${{ secrets.BASE_PATH }}
+          ENV_AUTH_CODE: ${{ secrets.AUTH_CODE }}

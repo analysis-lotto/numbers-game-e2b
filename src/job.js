@@ -4,13 +4,14 @@ const { fromExternal } = require("./proxy");
 const { getWatermark, writeWatermarks } = require("./watermark");
 
 const FIRST_DAY = '1938-01-01T00:00:00.000Z' // get timestamp of first day
-const BEFORE_WATERMARK_WINDOW = process.env.BEFORE_WATERMARK_WINDOW || 1
-const MAX_OPERATION = process.env.MAX_OPERATION || 5;
+const BEFORE_WATERMARK_WINDOW = Number.parseInt(process.env.BEFORE_WATERMARK_WINDOW) || 1
+const MAX_OPERATION = Number.parseInt(process.env.MAX_OPERATION) || 5;
 
 module.exports.execute = async (_jobId) => {
 
     if (BEFORE_WATERMARK_WINDOW >= MAX_OPERATION) {
         console.error(`'BEFORE_WATERMARK_WINDOW' can not be more than 'MAX_OPERATION'. `)
+        process.exit()
     }
 
 

@@ -1,6 +1,6 @@
 {
   "name": "numbers-game-e2b",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Batch Job to keep data from External System and push on Bronze Layer",
   "main": "src/index.js",
   "scripts": {

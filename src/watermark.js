@@ -15,3 +15,18 @@ module.exports.writeWatermark = (pointer, cb, err) => {
         cb, err
     )
 }
+
+
+module.exports.writeWatermarks = (pointer, cb, err) => {
+
+    const watermarks = pointer.map(v=> {
+        return {
+            tableName: TABLE_NAME,
+            watermarkValue: v._data
+        }
+    })
+
+    data.insertDocuments(watermarks, COLLECTION_NAME,
+        cb, err
+    )
+}

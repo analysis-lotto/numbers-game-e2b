@@ -3,7 +3,7 @@ const Instance = require("./instance");
 const { fromExternal } = require("./proxy");
 const { getWatermark, writeWatermarks } = require("./watermark");
 
-const FIRST_DAY = new Date('1938-01-01T00:00:00.000Z').getTime() // get timestamp of first day
+const FIRST_DAY = '1938-01-01T00:00:00.000Z' // get timestamp of first day
 const BEFORE_WATERMARK_WINDOW = process.env.BEFORE_WATERMARK_WINDOW || 1
 const MAX_OPERATION = process.env.MAX_OPERATION || 5;
 

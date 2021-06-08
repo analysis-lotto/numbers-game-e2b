@@ -1,5 +1,6 @@
 const { insertDocuments } = require("./data");
 const Instance = require("./instance");
+const { getLogger } = require("./log");
 const { fromExternal } = require("./proxy");
 const { getWatermark, writeWatermarks } = require("./watermark");
 
@@ -7,8 +8,9 @@ const FIRST_DAY = '1938-01-01T00:00:00.000Z' // get timestamp of first day
 const BEFORE_WATERMARK_WINDOW = Number.parseInt(process.env.BEFORE_WATERMARK_WINDOW) || 1
 const MAX_OPERATION = Number.parseInt(process.env.MAX_OPERATION) || 5;
 
-module.exports.execute = async (_jobId) => {
-
+module.exports.execute = async () => {
+    const _jobId = makeid(32)
+    const LOGGER = getLogger(__filename, _jobId)
     if (BEFORE_WATERMARK_WINDOW >= MAX_OPERATION) {
         console.error(`'BEFORE_WATERMARK_WINDOW' can not be more than 'MAX_OPERATION'. `)
         process.exit()
@@ -18,8 +20,8 @@ module.exports.execute = async (_jobId) => {
     const status = Instance.getInstance();
     let operationNumber = 0;
     if (!status.check()) {
+        LOGGER.info('Starting process')
         status.start()
-
         await getWatermark(async (result) => {
 
             let pointer = result[0] ? removeDays(result[0].watermarkValue, BEFORE_WATERMARK_WINDOW) : FIRST_DAY
@@ -44,39 +46,47 @@ module.exports.execute = async (_jobId) => {
                 operationNumber = operationNumber + 1;
             }
 
-            console.log(`Number of operation: ${operationNumber}`)
-            // console.log(items.length)
-
+            LOGGER.info(`Number of operation: ${operationNumber}`)
 
             insertDocuments(items, 'bronze',
                 result_bronze => {
-                    console.log(`Saved data in bronze layer, value ${result_bronze}`);
+                    LOGGER.info(`Saved data in bronze layer, value ${result_bronze}`)
 
                     writeWatermarks(items, result_watermark => {
-                        console.log(`Saved watermark for bronze layer, value ${result_watermark}`);
+                        LOGGER.info(`Saved watermark for bronze layer, value ${result_watermark}`)
                         status.stop()
+                        LOGGER.info('The job ended')
+
 
                     },
                         err_watermark => {
-                            console.log(`Error during saving watermark for bronze layer ${items}`);
-                            console.log(err_watermark)
+                     
+                            LOGGER.error(`Error during saving watermark for bronze layer ${items}`)
+                            LOGGER.error(err_watermark)
+
                             status.stop()
+                            LOGGER.info('The job ended')
+
                         })
 
                 },
                 error_bronze => {
-                    console.log(`Error during saving data in bronze layer ${items}`);
-                    console.log(error_bronze)
+                    LOGGER.error(`Error during saving data in bronze layer ${items}`)
+                    LOGGER.error(error_bronze)
+
                     status.stop()
+
+                    LOGGER.info('The job ended')
+
                 })
 
 
 
             status.stop()
         }, err => {
+            LOGGER.error(err)
             status.stop()
-
-            console.log(err)
+            LOGGER.info('The job ended')
         })
 
 
@@ -127,4 +137,16 @@ function removeDays(target, days) {
     const targetDate = new Date(target).getTime()
 
     return new Date(targetDate - (24 * 60 * 60 * 1000 * days)).toISOString()
+}
+
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
 }

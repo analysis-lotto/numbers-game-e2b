@@ -19,7 +19,6 @@ module.exports.findDocument = function (id, collectionName, cb, errCb) {
             errCb(err)
         } else {
 
-            console.log('Connected successfully to server');
 
             const db = client.db(dbName);
 
@@ -48,7 +47,6 @@ module.exports.insertDataAndWatermark = function (item, watermark, collectionNam
             errCb(err)
         } else {
 
-            console.log('Connected successfully to server');
 
             const db = client.db(dbName);
 
@@ -85,7 +83,6 @@ module.exports.insertDocument = function (item, collectionName, cb, errCb) {
             errCb(err)
         } else {
 
-            console.log('Connected successfully to server');
 
             const db = client.db(dbName);
 
@@ -119,7 +116,6 @@ module.exports.insertDocuments = function (items, collectionName, cb, errCb) {
             errCb(err)
         } else {
 
-            console.log('Connected successfully to server');
 
             const db = client.db(dbName);
 
@@ -151,7 +147,6 @@ module.exports.firstDocumentByFilter = function (filter, collectionName, cb, err
             errCb(err)
         } else {
 
-            console.log('Connected successfully to server');
 
             const db = client.db(dbName);
 
@@ -181,7 +176,6 @@ module.exports.getWatermark = function (filter, collectionName, cb, errCb) {
             errCb(err)
         } else {
 
-            console.log('Connected successfully to server');
 
             const db = client.db(dbName);
 
@@ -216,7 +210,6 @@ module.exports.findDocumentsByFilter = function (filter, collectionName, cb, err
             errCb(err)
         } else {
 
-            console.log('Connected successfully to server');
 
             const db = client.db(dbName);
 
@@ -246,7 +239,6 @@ module.exports.deleteDocumentsByFilter = function (filter, collectionName, cb, e
             errCb(err)
         } else {
 
-            console.log('Connected successfully to server');
 
             const db = client.db(dbName);
 
